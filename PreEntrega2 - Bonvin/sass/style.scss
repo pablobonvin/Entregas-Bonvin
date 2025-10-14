@@ -1,16 +1,8 @@
-//Variables
-$color-primario: #0d2444;
-$color-secundario: #193e72;
-$color-blanco: #ffffff;
-$color-texto: #ffffffcc;
-$fuente-principal: "Poppins", sans-serif;
+@use "base/reset" as *;
+@use "utilitis/variables" as *;
+@use "utilitis/mixin" as *;
 
-//Reset
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 //Fondo
 body {
@@ -179,12 +171,10 @@ p  { font-size: 20px; margin-top: 30px; }
 
 //Botón Instagram
 .btn-instagram {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 20px auto;
-  text-decoration: none;
+   @include centrado-flex;
+   flex-direction: column;
+   margin: 20px auto;
+   text-decoration: none;
 
   img {
     width: 50px;
