@@ -25,9 +25,7 @@ body {
 
 //Tipografía general
 h1, h2, h3, h4, h5, p {
-  font-family: $fuente-principal;
-  color: $color-blanco;
-  text-align: center;
+   @include tipografia-general;
 }
 
 h1 { font-size: 60px; }
@@ -142,11 +140,8 @@ p  { font-size: 20px; margin-top: 30px; }
       }
 
       input {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        @include input-estandar;
+         margin-top: 5px;
       }
 
       button {
@@ -351,11 +346,7 @@ p  { font-size: 20px; margin-top: 30px; }
 
   input[type="email"],
   input[type="password"] {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    @include input-estandar;
   }
 
   button {

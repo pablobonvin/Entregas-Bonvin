@@ -3,3 +3,17 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin tipografia-general {
+  font-family: $fuente-principal;
+  color: $color-blanco;
+  text-align: center;
+}
+
+@mixin input-estandar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
