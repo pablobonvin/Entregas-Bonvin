@@ -119,13 +119,14 @@ p {
   gap: 20px;
 }
 .container .contenido .imagen {
-  flex: 2;
-  background: #ffffff;
+  flex: 1;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 250px;
   border-radius: 30px;
+  margin-top: -30px;
 }
 .container .contenido .imagen img {
   max-width: 100%;
@@ -138,8 +139,6 @@ p {
   background: #0d2444;
   padding: 20px;
   color: #ffffff;
-  max-height: 600px;
-  overflow-y: auto;
   margin-top: 100px;
 }
 .container .contenido .formulario h2 {
@@ -152,10 +151,11 @@ p {
 }
 .container .contenido .formulario input {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-top: 5px;
 }
 .container .contenido .formulario button {
   margin-top: 15px;
@@ -261,7 +261,7 @@ p {
 .menu-hamburguesa .menu-inicio {
   color: #ffffff;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
   cursor: pointer;
@@ -271,9 +271,16 @@ p {
   color: #599eff;
 }
 .menu-hamburguesa .menu-icon {
-  font-size: 28px;
   color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
   cursor: pointer;
+  transition: color 0.3s;
+}
+.menu-hamburguesa .menu-icon:hover {
+  color: #599eff;
 }
 .menu-hamburguesa .menu-items {
   display: none;
@@ -333,10 +340,10 @@ p {
 .login-container input[type=email],
 .login-container input[type=password] {
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 20px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  margin-bottom: 20px;
 }
 .login-container button {
   width: 100%;
@@ -378,6 +385,19 @@ p {
 @media (max-width: 768px) {
   .contenido {
     flex-direction: column;
+  }
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .logo img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
   }
 }
 

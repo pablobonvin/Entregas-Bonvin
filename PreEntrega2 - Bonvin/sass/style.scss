@@ -1,7 +1,6 @@
 @use "base/reset" as *;
-@use "utilitis/variables" as *;
-@use "utilitis/mixin" as *;
-
+@use "utilities/variables" as *;
+@use "utilities/mixin" as *;
 
 
 //Fondo
@@ -106,13 +105,14 @@ p  { font-size: 20px; margin-top: 30px; }
     gap: 20px;
 
     .imagen {
-      flex: 2;
-      background: $color-blanco;
+      flex: 1;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 250px;
       border-radius: 30px;
+      margin-top: -30px;
 
       img {
         max-width: 100%;
@@ -127,8 +127,8 @@ p  { font-size: 20px; margin-top: 30px; }
       background: $color-primario;
       padding: 20px;
       color: $color-blanco;
-      max-height: 600px;
-      overflow-y: auto;
+      //max-height: 600px;
+      //soverflow-y: auto;
       margin-top: 100px;
 
       h2 { margin-bottom: 15px; }
@@ -263,7 +263,7 @@ p  { font-size: 20px; margin-top: 30px; }
   .menu-inicio {
     color: $color-blanco;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
     font-family: $fuente-principal;
     text-decoration: none;
     cursor: pointer;
@@ -275,9 +275,17 @@ p  { font-size: 20px; margin-top: 30px; }
   }
 
   .menu-icon {
-    font-size: 28px;
     color: $color-blanco;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: $fuente-principal;
+    text-decoration: none;
     cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #599eff;
+    }
   }
 
   .menu-items {
@@ -395,5 +403,20 @@ p  { font-size: 20px; margin-top: 30px; }
 @media (max-width: 768px) {
   .contenido {
     flex-direction: column;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+
+    img {
+     width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+    }
   }
 }

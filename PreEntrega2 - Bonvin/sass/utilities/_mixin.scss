@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @mixin centrado-flex {
   display: flex;
   align-items: center;
