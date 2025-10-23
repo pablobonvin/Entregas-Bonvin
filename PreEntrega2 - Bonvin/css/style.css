@@ -246,6 +246,7 @@ p {
 
 .menu-hamburguesa {
   position: relative;
+  margin-top: 15px;
 }
 .menu-hamburguesa .menu-bar {
   display: flex;
@@ -266,6 +267,7 @@ p {
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
+  margin-top: 15px;
 }
 .menu-hamburguesa .menu-inicio:hover {
   color: #599eff;
@@ -278,6 +280,7 @@ p {
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s;
+  margin-top: 15px;
 }
 .menu-hamburguesa .menu-icon:hover {
   color: #599eff;
@@ -308,7 +311,7 @@ p {
   transition: background-color 0.3s;
 }
 .menu-hamburguesa .menu-items a:hover {
-  background-color: #0a55be;
+  background-color: #0d2444;
 }
 .menu-hamburguesa .menu-items a:last-child {
   border-bottom: none;
@@ -324,6 +327,7 @@ p {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
+  margin: 60px auto 0;
 }
 .login-container h2 {
   text-align: center;
@@ -370,6 +374,74 @@ p {
 }
 .login-container .extra-links a:hover {
   text-decoration: underline;
+}
+
+.contenedor-angosto {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  color: #ffffff;
+}
+
+.contenido-registro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+.contenido-registro .form-registro {
+  background-color: #193e72;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+.contenido-registro .form-registro h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: "Poppins", sans-serif;
+}
+.contenido-registro .form-registro form {
+  display: flex;
+  flex-direction: column;
+}
+.contenido-registro .form-registro form label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+.contenido-registro .form-registro form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+.contenido-registro .form-registro form button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0d2444;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.contenido-registro .form-registro form button:hover {
+  background-color: rgb(4.8148148148, 13.3333333333, 25.1851851852);
+}
+@media (max-width: 768px) {
+  .contenido-registro {
+    padding: 20px;
+  }
+  .contenido-registro .form-registro {
+    padding: 20px;
+  }
 }
 
 .copy {

@@ -127,8 +127,6 @@ p  { font-size: 20px; margin-top: 30px; }
       background: $color-primario;
       padding: 20px;
       color: $color-blanco;
-      //max-height: 600px;
-      //soverflow-y: auto;
       margin-top: 100px;
 
       h2 { margin-bottom: 15px; }
@@ -246,6 +244,7 @@ p  { font-size: 20px; margin-top: 30px; }
 //Menú hamburguesa
 .menu-hamburguesa {
   position: relative;
+  margin-top: 15px;
 
   .menu-bar {
     display: flex;
@@ -261,7 +260,7 @@ p  { font-size: 20px; margin-top: 30px; }
   }
 
   .menu-inicio {
-   @include boton-navegadores;
+    @include boton-navegadores;
   }
 
   .menu-icon {
@@ -295,7 +294,7 @@ p  { font-size: 20px; margin-top: 30px; }
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: #0a55be;
+        background-color: $color-primario
       }
 
       &:last-child {
@@ -317,6 +316,7 @@ p  { font-size: 20px; margin-top: 30px; }
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
+  margin: 60px auto 0;
 
   h2 {
     text-align: center;
@@ -367,6 +367,17 @@ p  { font-size: 20px; margin-top: 30px; }
       }
     }
   }
+}
+
+.contenedor-angosto {
+  max-width: 900px; // o el ancho que prefieras
+  margin: 0 auto;   // centra horizontalmente
+  padding: 0 20px;  // agrega espacio interno a los costados
+  color: $color-blanco; // opcional, para mantener el contraste
+}
+
+.contenido-registro {
+  @include formulario-registro;
 }
 
 //footer
