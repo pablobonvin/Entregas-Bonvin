@@ -19,3 +19,17 @@
   border-radius: 8px;
   margin-bottom: 20px;
 }
+
+@mixin boton-navegadores {
+  color: $color-blanco;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: $fuente-principal;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #599eff;
+  }
+}

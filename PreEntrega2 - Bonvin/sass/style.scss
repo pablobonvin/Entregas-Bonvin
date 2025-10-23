@@ -261,31 +261,11 @@ p  { font-size: 20px; margin-top: 30px; }
   }
 
   .menu-inicio {
-    color: $color-blanco;
-    font-weight: bold;
-    font-size: 24px;
-    font-family: $fuente-principal;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s;
-
-    &:hover {
-      color: #599eff;
-    }
+   @include boton-navegadores;
   }
 
   .menu-icon {
-    color: $color-blanco;
-    font-weight: bold;
-    font-size: 24px;
-    font-family: $fuente-principal;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s;
-
-    &:hover {
-      color: #599eff;
-    }
+    @include boton-navegadores;
   }
 
   .menu-items {
