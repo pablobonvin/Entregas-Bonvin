@@ -369,13 +369,15 @@ p  { font-size: 20px; margin-top: 30px; }
   }
 }
 
+//Page Inciar sesion
 .contenedor-angosto {
-  max-width: 900px; // o el ancho que prefieras
-  margin: 0 auto;   // centra horizontalmente
-  padding: 0 20px;  // agrega espacio interno a los costados
-  color: $color-blanco; // opcional, para mantener el contraste
+  max-width: 900px; 
+  margin: 0 auto;   
+  padding: 0 20px;  
+  color: $color-blanco; 
 }
 
+//Page formulario de registro
 .contenido-registro {
   @include formulario-registro;
 }
