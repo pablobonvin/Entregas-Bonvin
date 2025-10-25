@@ -413,3 +413,20 @@ p  { font-size: 20px; margin-top: 30px; }
     }
   }
 }
+/* Adaptar menú a tablet y celular */
+@media (max-width: 768px) {
+  .menu ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu {
+    padding: 10px;
+  }
+
+  .menu a {
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+  }
+}

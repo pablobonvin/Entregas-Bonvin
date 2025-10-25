@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -470,6 +471,21 @@ p {
     height: auto;
     max-width: 100%;
     display: block;
+  }
+}
+/* Adaptar menú a tablet y celular */
+@media (max-width: 768px) {
+  .menu ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .menu {
+    padding: 10px;
+  }
+  .menu a {
+    display: block;
+    padding: 10px;
+    font-size: 18px;
   }
 }
 
