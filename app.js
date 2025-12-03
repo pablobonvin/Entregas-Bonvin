@@ -12,9 +12,28 @@ const productos = [
 ];
 
 // --------------------------------------
-// CARRITO (cantidad ilimitada)
+// STORAGE
 // --------------------------------------
 let carrito = [];
+
+function guardarCarritoLS() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+function cargarCarritoLS() {
+    const data = localStorage.getItem("carrito");
+    carrito = data ? JSON.parse(data) : [];
+}
+
+// --------------------------------------
+// MENSAJE VISUAL
+// --------------------------------------
+function mostrarMensaje(texto) {
+    const box = document.getElementById("mensaje-usuario");
+    box.textContent = texto;
+    box.classList.remove("oculto");
+    setTimeout(() => box.classList.add("oculto"), 3000);
+}
 
 // --------------------------------------
 // MOSTRAR PRODUCTOS
@@ -26,16 +45,12 @@ function cargarProductos() {
     productos.forEach(prod => {
         const card = document.createElement("div");
         card.classList.add("card-producto");
-
         card.innerHTML = `
             <h3>${prod.nombre}</h3>
             <p>$${prod.precio}</p>
-            <div>
-                <button class="btn-restar" data-id="${prod.id}">−</button>
-                <button class="btn-agregar" data-id="${prod.id}">+</button>
-            </div>
+            <button class="btn-agregar" data-id="${prod.id}">+</button>
+            <button class="btn-restar" data-id="${prod.id}">−</button>
         `;
-
         cont.appendChild(card);
     });
 
@@ -43,63 +58,43 @@ function cargarProductos() {
 }
 
 // --------------------------------------
-// BOTONES SUMAR / RESTAR
+// FUNCIONES DE CARRITO
 // --------------------------------------
 function activarBotones() {
     document.querySelectorAll(".btn-agregar").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const id = Number(btn.dataset.id);
-            agregarAlCarrito(id);
-        });
+        btn.addEventListener("click", () => agregarAlCarrito(Number(btn.dataset.id)));
     });
 
     document.querySelectorAll(".btn-restar").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const id = Number(btn.dataset.id);
-            quitarDelCarrito(id);
-        });
+        btn.addEventListener("click", () => quitarDelCarrito(Number(btn.dataset.id)));
     });
 }
 
-// --------------------------------------
-// AGREGAR PRODUCTO
-// --------------------------------------
 function agregarAlCarrito(id) {
     const producto = productos.find(p => p.id === id);
     const item = carrito.find(p => p.id === id);
 
-    if (item) {
-        item.cantidad++;
-    } else {
-        carrito.push({ ...producto, cantidad: 1 });
-    }
+    if (item) item.cantidad++;
+    else carrito.push({ ...producto, cantidad: 1 });
 
+    guardarCarritoLS();
     mostrarCarrito();
 }
 
-// --------------------------------------
-// QUITAR PRODUCTO
-// --------------------------------------
 function quitarDelCarrito(id) {
     const item = carrito.find(p => p.id === id);
-
     if (!item) return;
-    if (item.cantidad === 1) {
-        carrito = carrito.filter(p => p.id !== id);
-    } else {
-        item.cantidad--;
-    }
 
+    if (item.cantidad === 1) carrito = carrito.filter(p => p.id !== id);
+    else item.cantidad--;
+
+    guardarCarritoLS();
     mostrarCarrito();
 }
 
-// --------------------------------------
-// MOSTRAR CARRITO EN HTML
-// --------------------------------------
 function mostrarCarrito() {
     const cont = document.getElementById("carrito-items");
     const totalTexto = document.getElementById("carrito-total");
-
     cont.innerHTML = "";
 
     carrito.forEach(item => {
@@ -118,37 +113,59 @@ function mostrarCarrito() {
 // --------------------------------------
 // FINALIZAR COMPRA
 // --------------------------------------
-document.getElementById("finalizar-compra").addEventListener("click", () => {
+function finalizarCompra() {
     if (carrito.length === 0) {
-        alert("El carrito está vacío.");
+        mostrarMensaje("El carrito está vacío.");
         return;
     }
 
-    let detalle = "Detalle de compra:\n\n";
+    const modal = document.getElementById("modal-compra");
+    const detalle = document.getElementById("modal-detalle");
 
+    let html = `<h3>Detalle de tu compra</h3><ul>`;
     carrito.forEach(item => {
-        detalle += `${item.nombre} x${item.cantidad} — $${item.precio * item.cantidad}\n`;
+        html += `<li>${item.nombre} x${item.cantidad} — $${item.precio * item.cantidad}</li>`;
     });
+    html += `</ul>`;
 
-    const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+    const totalCompra = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+    html += `<p style="font-weight:bold; font-size:18px; margin-top:10px;">Total de la compra: $${totalCompra}</p>`;
 
-    detalle += `\nTOTAL: $${total}`;
+    detalle.innerHTML = html;
 
-    alert(detalle);
-});
+    // Mostrar modal correctamente
+    modal.classList.remove("oculto");
+    modal.style.display = "flex";
+    modal.style.zIndex = 5000;
+
+    // Vaciar carrito después de mostrar modal
+    carrito = [];
+    guardarCarritoLS();
+    mostrarCarrito();
+}
 
 // --------------------------------------
-// INICIO
+// CERRAR MODAL
 // --------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+    cargarCarritoLS();
     cargarProductos();
     mostrarCarrito();
-});
-// Obtener referencias a elementos
-const btnCarrito = document.getElementById("btn-carrito");
-const carritoContenedor = document.getElementById("carrito-contenedor");
 
-// Función para alternar visibilidad del carrito
-btnCarrito.addEventListener("click", () => {
-    carritoContenedor.classList.toggle("carrito-oculto");
+    document.getElementById("btn-carrito").addEventListener("click", () => {
+        document.getElementById("carrito-contenedor").classList.toggle("carrito-oculto");
+    });
+
+    document.getElementById("vaciar-carrito").addEventListener("click", () => {
+        carrito = [];
+        guardarCarritoLS();
+        mostrarCarrito();
+        mostrarMensaje("Carrito vaciado.");
+    });
+
+    document.getElementById("finalizar-compra").addEventListener("click", finalizarCompra);
+
+    document.getElementById("cerrar-modal").addEventListener("click", () => {
+        document.getElementById("modal-compra").classList.add("oculto");
+    });
 });
