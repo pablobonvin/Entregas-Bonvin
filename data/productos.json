@@ -1,0 +1,9 @@
+[
+  { "id": 1, "nombre": "Remera Básica", "precio": 15000 },
+  { "id": 2, "nombre": "Remera Estampa", "precio": 20000 },
+  { "id": 3, "nombre": "Chomba", "precio": 25000 },
+  { "id": 4, "nombre": "Bermuda", "precio": 40000 },
+  { "id": 5, "nombre": "Jeans", "precio": 60000 },
+  { "id": 6, "nombre": "Camisa", "precio": 50000 },
+  { "id": 7, "nombre": "Malla", "precio": 25000 }
+]

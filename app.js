@@ -1,15 +1,18 @@
 // --------------------------------------
-// LISTA DE PRODUCTOS
+// LISTA DE PRODUCTOS (JSON)
 // --------------------------------------
-const productos = [
-    { id: 1, nombre: "Remera Básica", precio: 15000 },
-    { id: 2, nombre: "Remera Estampa", precio: 20000 },
-    { id: 3, nombre: "Chomba", precio: 25000 },
-    { id: 4, nombre: "Bermuda", precio: 40000 },
-    { id: 5, nombre: "Jeans", precio: 60000 },
-    { id: 6, nombre: "Camisa", precio: 50000 },
-    { id: 7, nombre: "Malla", precio: 25000 },
-];
+let productos = [];
+
+async function cargarProductosJSON() {
+    try {
+        // 🔴 RUTA CORRECTA DESDE /pages/productos.html
+        const response = await fetch("../data/productos.json");
+        productos = await response.json();
+        cargarProductos();
+    } catch (error) {
+        console.error("Error cargando productos", error);
+    }
+}
 
 // --------------------------------------
 // STORAGE
@@ -62,11 +65,15 @@ function cargarProductos() {
 // --------------------------------------
 function activarBotones() {
     document.querySelectorAll(".btn-agregar").forEach(btn => {
-        btn.addEventListener("click", () => agregarAlCarrito(Number(btn.dataset.id)));
+        btn.addEventListener("click", () =>
+            agregarAlCarrito(Number(btn.dataset.id))
+        );
     });
 
     document.querySelectorAll(".btn-restar").forEach(btn => {
-        btn.addEventListener("click", () => quitarDelCarrito(Number(btn.dataset.id)));
+        btn.addEventListener("click", () =>
+            quitarDelCarrito(Number(btn.dataset.id))
+        );
     });
 }
 
@@ -85,8 +92,11 @@ function quitarDelCarrito(id) {
     const item = carrito.find(p => p.id === id);
     if (!item) return;
 
-    if (item.cantidad === 1) carrito = carrito.filter(p => p.id !== id);
-    else item.cantidad--;
+    if (item.cantidad === 1) {
+        carrito = carrito.filter(p => p.id !== id);
+    } else {
+        item.cantidad--;
+    }
 
     guardarCarritoLS();
     mostrarCarrito();
@@ -106,7 +116,10 @@ function mostrarCarrito() {
         `;
     });
 
-    const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+    const total = carrito.reduce(
+        (acc, p) => acc + p.precio * p.cantidad,
+        0
+    );
     totalTexto.textContent = "Total: $" + total;
 }
 
@@ -128,32 +141,40 @@ function finalizarCompra() {
     });
     html += `</ul>`;
 
-    const totalCompra = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-    html += `<p style="font-weight:bold; font-size:18px; margin-top:10px;">Total de la compra: $${totalCompra}</p>`;
+    const totalCompra = carrito.reduce(
+        (acc, p) => acc + p.precio * p.cantidad,
+        0
+    );
+
+    html += `
+        <p style="font-weight:bold; font-size:18px; margin-top:10px;">
+            Total de la compra: $${totalCompra}
+        </p>
+    `;
 
     detalle.innerHTML = html;
 
-    // Mostrar modal correctamente
     modal.classList.remove("oculto");
     modal.style.display = "flex";
     modal.style.zIndex = 5000;
 
-    // Vaciar carrito después de mostrar modal
     carrito = [];
     guardarCarritoLS();
     mostrarCarrito();
 }
 
 // --------------------------------------
-// CERRAR MODAL
+// DOMContentLoaded
 // --------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
     cargarCarritoLS();
-    cargarProductos();
+    cargarProductosJSON();
     mostrarCarrito();
 
     document.getElementById("btn-carrito").addEventListener("click", () => {
-        document.getElementById("carrito-contenedor").classList.toggle("carrito-oculto");
+        document
+            .getElementById("carrito-contenedor")
+            .classList.toggle("carrito-oculto");
     });
 
     document.getElementById("vaciar-carrito").addEventListener("click", () => {
@@ -163,9 +184,13 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarMensaje("Carrito vaciado.");
     });
 
-    document.getElementById("finalizar-compra").addEventListener("click", finalizarCompra);
+    document
+        .getElementById("finalizar-compra")
+        .addEventListener("click", finalizarCompra);
 
     document.getElementById("cerrar-modal").addEventListener("click", () => {
-        document.getElementById("modal-compra").classList.add("oculto");
+        document
+            .getElementById("modal-compra")
+            .classList.add("oculto");
     });
 });
