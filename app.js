@@ -49,6 +49,7 @@ function cargarProductos() {
         const card = document.createElement("div");
         card.classList.add("card-producto");
         card.innerHTML = `
+            <img src="${prod.imagen}" alt="${prod.nombre}">
             <h3>${prod.nombre}</h3>
             <p>$${prod.precio}</p>
             <button class="btn-agregar" data-id="${prod.id}">+</button>

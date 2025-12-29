@@ -1,9 +1,44 @@
 [
-  { "id": 1, "nombre": "Remera Básica", "precio": 15000 },
-  { "id": 2, "nombre": "Remera Estampa", "precio": 20000 },
-  { "id": 3, "nombre": "Chomba", "precio": 25000 },
-  { "id": 4, "nombre": "Bermuda", "precio": 40000 },
-  { "id": 5, "nombre": "Jeans", "precio": 60000 },
-  { "id": 6, "nombre": "Camisa", "precio": 50000 },
-  { "id": 7, "nombre": "Malla", "precio": 25000 }
+  {
+    "id": 1,
+    "nombre": "Remera Básica",
+    "precio": 15000,
+    "imagen": "../assets/productos/remera-basica.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Remera Estampa",
+    "precio": 20000,
+    "imagen": "../assets/productos/remera-estampa.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Chomba",
+    "precio": 25000,
+    "imagen": "../assets/productos/chomba.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Bermuda",
+    "precio": 40000,
+    "imagen": "../assets/productos/bermuda.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Jeans",
+    "precio": 60000,
+    "imagen": "../assets/productos/jeans.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Camisa",
+    "precio": 50000,
+    "imagen": "../assets/productos/camisa.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Malla",
+    "precio": 25000,
+    "imagen": "../assets/productos/malla.jpg"
+  }
 ]
